@@ -1,3 +1,9 @@
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
+![React](https://img.shields.io/badge/React-Frontend-blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
+![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
+![LangGraph](https://img.shields.io/badge/LangGraph-Agent-purple)
+![Groq](https://img.shields.io/badge/Groq-LLM-orange)
 # AI Sales Analytics Copilot
 
 An AI-powered SaaS platform that enables businesses to analyze sales data using natural language.
