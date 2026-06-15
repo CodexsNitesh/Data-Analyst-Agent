@@ -23,13 +23,13 @@ export default function Datasets() {
   )
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
+    <div className="mx-auto max-w-6xl p-4 sm:p-6">
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Datasets</h1>
+          <h1 className="text-xl font-bold text-white sm:text-2xl">Datasets</h1>
           <p className="text-muted text-sm mt-1">Upload and manage your CSV datasets</p>
         </div>
-        <Button onClick={() => setUploadOpen(true)}>
+        <Button onClick={() => setUploadOpen(true)} className="w-full sm:w-auto">
           <Plus size={15} /> Upload CSV
         </Button>
       </div>
@@ -40,7 +40,7 @@ export default function Datasets() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search datasets..."
-          className="w-full max-w-md pl-10 pr-4 py-2.5 rounded-xl bg-panel border border-border text-white text-sm placeholder-muted focus:outline-none focus:border-blue-500 transition-colors"
+          className="w-full rounded-lg border border-border bg-panel py-2.5 pl-10 pr-4 text-sm text-white placeholder-muted transition-colors focus:border-white focus:outline-none sm:max-w-md"
         />
       </div>
 
@@ -52,7 +52,7 @@ export default function Datasets() {
           {!search && <Button onClick={() => setUploadOpen(true)}><Plus size={14} /> Upload your first CSV</Button>}
         </div>
       ) : (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((d) => <DatasetCard key={d.id} dataset={d} onDelete={handleDelete} />)}
         </div>
       )}

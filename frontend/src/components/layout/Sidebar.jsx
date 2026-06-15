@@ -11,23 +11,23 @@ const nav = [
 
 export default function Sidebar() {
   return (
-    <aside className="w-56 bg-panel border-r border-border flex flex-col h-full flex-shrink-0">
-      <nav className="flex-1 py-4 px-3 space-y-1">
+    <aside className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-panel/95 backdrop-blur md:sticky md:top-14 md:z-10 md:h-[calc(100vh-3.5rem)] md:w-56 md:flex-shrink-0 md:border-r md:border-t-0 md:bg-panel">
+      <nav className="flex items-center justify-around gap-1 px-2 py-2 md:block md:space-y-1 md:px-3 md:py-4">
         {nav.map(({ to, icon: Icon, label }) => (
           <NavLink
             key={to}
             to={to}
             end={to === '/'}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+              `flex min-w-0 flex-1 flex-col items-center gap-1 rounded-lg px-2 py-2 text-[11px] font-medium transition-all md:flex-row md:gap-3 md:px-3 md:py-2.5 md:text-sm ${
                 isActive
-                  ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+                  ? 'border border-white/30 bg-white text-black'
                   : 'text-muted hover:bg-border hover:text-white'
               }`
             }
           >
             <Icon size={16} />
-            {label}
+            <span className="truncate">{label}</span>
           </NavLink>
         ))}
       </nav>

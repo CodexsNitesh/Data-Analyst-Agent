@@ -27,7 +27,7 @@ export default function ResultTable({ data }) {
   return (
     <div className="mt-3 rounded-xl border border-border overflow-hidden">
       <div className="flex items-center gap-2 px-3 py-2 bg-surface border-b border-border text-xs text-muted">
-        <Table2 size={12} className="text-blue-400" />
+        <Table2 size={12} className="text-white" />
         <span className="uppercase tracking-widest font-semibold">Results</span>
         <span className="ml-auto">{data.length} row{data.length !== 1 ? 's' : ''}</span>
       </div>
@@ -46,7 +46,7 @@ export default function ResultTable({ data }) {
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row, i) => (
-              <tr key={row.id} className={`border-b border-border/50 ${i % 2 === 0 ? 'bg-surface' : 'bg-panel/50'} hover:bg-blue-500/5 transition-colors`}>
+              <tr key={row.id} className={`border-b border-border/50 ${i % 2 === 0 ? 'bg-surface' : 'bg-panel/50'} transition-colors hover:bg-white/5`}>
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} className="px-3 py-2 font-mono text-white/80 whitespace-nowrap max-w-[180px] truncate">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

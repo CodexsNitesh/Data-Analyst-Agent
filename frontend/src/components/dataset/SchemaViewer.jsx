@@ -3,8 +3,8 @@ import Badge from '../ui/Badge'
 
 const typeColor = (type) => {
   if (type.includes('int') || type.includes('float') || type.includes('numeric') || type.includes('double')) return 'blue'
-  if (type.includes('date') || type.includes('time')) return 'yellow'
-  if (type.includes('bool')) return 'green'
+  if (type.includes('date') || type.includes('time')) return 'gray'
+  if (type.includes('bool')) return 'gray'
   return 'gray'
 }
 
@@ -14,9 +14,9 @@ export default function SchemaViewer({ schema }) {
   return (
     <div className="space-y-1">
       {schema.map((col) => (
-        <div key={col.name} className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-border/30 transition-colors">
+        <div key={col.name} className="flex items-center gap-3 rounded-lg px-3 py-2 transition-colors hover:bg-border/30">
           <ChevronRight size={12} className="text-muted" />
-          <span className="text-sm text-white font-mono flex-1">{col.name}</span>
+          <span className="min-w-0 flex-1 truncate font-mono text-sm text-white">{col.name}</span>
           <Badge color={typeColor(col.type)} className="font-mono text-xs">{col.type}</Badge>
           {col.sample_values?.length > 0 && (
             <span className="text-muted text-xs hidden sm:block truncate max-w-[120px]">

@@ -35,18 +35,18 @@ export default function ChatBox({ messages, loading, onSend, disabled }) {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex-1 overflow-y-auto px-6 py-6 space-y-5">
+      <div className="flex-1 space-y-5 overflow-y-auto px-4 py-5 sm:px-6 sm:py-6">
         {messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full gap-5">
             <div className="text-center">
               <p className="text-white font-semibold mb-1">Ask about your data</p>
               <p className="text-muted text-sm">Natural language to SQL — get instant answers</p>
             </div>
-            <div className="grid grid-cols-2 gap-2 w-full max-w-md">
+            <div className="grid w-full max-w-md gap-2 sm:grid-cols-2">
               {SUGGESTIONS.map((s) => (
                 <button key={s} onClick={() => !disabled && onSend(s)}
                   disabled={disabled}
-                  className="bg-panel border border-border hover:border-blue-500/40 text-left text-xs px-3 py-2.5 rounded-xl text-muted hover:text-white transition-all disabled:opacity-40">
+                  className="rounded-lg border border-border bg-panel px-3 py-2.5 text-left text-xs text-muted transition-all hover:border-white/50 hover:text-white disabled:opacity-40">
                   {s}
                 </button>
               ))}
@@ -57,13 +57,13 @@ export default function ChatBox({ messages, loading, onSend, disabled }) {
             {messages.map((m) => <MessageBubble key={m.id} message={m} />)}
             {loading && (
               <div className="flex items-center gap-3">
-                <div className="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center">
-                  <Loader2 size={13} className="text-white animate-spin" />
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white">
+                  <Loader2 size={13} className="animate-spin text-black" />
                 </div>
-                <div className="bg-panel border border-border px-4 py-3 rounded-2xl rounded-bl-none">
+                <div className="rounded-lg rounded-bl-none border border-border bg-panel px-4 py-3">
                   <div className="flex gap-1">
                     {[0, 1, 2].map((i) => (
-                      <span key={i} className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
+                      <span key={i} className="h-1.5 w-1.5 animate-bounce rounded-full bg-white" style={{ animationDelay: `${i * 0.15}s` }} />
                     ))}
                   </div>
                 </div>
@@ -74,8 +74,8 @@ export default function ChatBox({ messages, loading, onSend, disabled }) {
         <div ref={bottomRef} />
       </div>
 
-      <div className="px-6 pb-5 pt-3 border-t border-border">
-        <div className="flex items-end gap-3 bg-panel border border-border rounded-2xl px-4 py-3 focus-within:border-blue-500/50 transition-colors">
+      <div className="border-t border-border px-4 pb-4 pt-3 sm:px-6 sm:pb-5">
+        <div className="flex items-end gap-3 rounded-lg border border-border bg-panel px-3 py-3 transition-colors focus-within:border-white sm:px-4">
           <textarea
             ref={textareaRef}
             value={input}
@@ -92,8 +92,8 @@ export default function ChatBox({ messages, loading, onSend, disabled }) {
             }}
           />
           <button onClick={handleSend} disabled={loading || !input.trim() || disabled}
-            className="w-8 h-8 rounded-xl bg-blue-500 flex items-center justify-center flex-shrink-0 disabled:opacity-40 hover:bg-blue-400 transition-colors">
-            {loading ? <Loader2 size={14} className="text-white animate-spin" /> : <Send size={14} className="text-white" />}
+            className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-white transition-colors hover:bg-neutral-200 disabled:opacity-40">
+            {loading ? <Loader2 size={14} className="animate-spin text-black" /> : <Send size={14} className="text-black" />}
           </button>
         </div>
         <p className="text-center text-xs text-muted mt-2">Only SELECT queries are executed. All queries are validated.</p>

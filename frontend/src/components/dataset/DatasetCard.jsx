@@ -14,18 +14,18 @@ export default function DatasetCard({ dataset, onDelete }) {
   const navigate = useNavigate()
 
   return (
-    <Card className="p-5 hover:border-blue-500/30 transition-colors">
+    <Card className="p-4 transition-colors hover:border-white/40 sm:p-5">
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-            <Table2 size={18} className="text-blue-400" />
+          <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border border-white/20 bg-white/5">
+            <Table2 size={18} className="text-white" />
           </div>
-          <div>
-            <h3 className="text-white font-semibold text-sm">{dataset.name}</h3>
+          <div className="min-w-0">
+            <h3 className="truncate text-sm font-semibold text-white">{dataset.name}</h3>
             <p className="text-muted text-xs font-mono">{dataset.table_name}</p>
           </div>
         </div>
-        <button onClick={() => onDelete(dataset.id)} className="text-muted hover:text-red-400 transition-colors">
+        <button onClick={() => onDelete(dataset.id)} className="text-muted transition-colors hover:text-white">
           <Trash2 size={15} />
         </button>
       </div>
@@ -40,7 +40,7 @@ export default function DatasetCard({ dataset, onDelete }) {
         <Badge color="gray">{fmtSize(dataset.file_size_bytes)}</Badge>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row">
         <Button variant="secondary" size="sm" className="flex-1" onClick={() => navigate(`/chat?dataset=${dataset.id}`)}>
           <MessageSquare size={12} /> Chat
         </Button>

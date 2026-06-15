@@ -29,17 +29,17 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen bg-surface flex items-center justify-center p-4">
+    <div className="flex min-h-screen items-center justify-center bg-surface p-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-blue-500 flex items-center justify-center mx-auto mb-4">
-            <Zap size={24} className="text-white" fill="currentColor" />
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg border border-white bg-white">
+            <Zap size={24} className="text-black" fill="currentColor" />
           </div>
           <h1 className="text-2xl font-bold text-white">Get Started Free</h1>
           <p className="text-muted text-sm mt-1">Create your AI Sales Copilot account</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-panel border border-border rounded-2xl p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 rounded-lg border border-border bg-panel p-5 sm:p-6">
           <Input
             label="Full Name"
             placeholder="Jane Smith"
@@ -64,7 +64,7 @@ export default function Register() {
             required
           />
 
-          {error && <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-3 py-2">{error}</p>}
+          {error && <p className="rounded-lg border border-white/30 bg-black px-3 py-2 text-sm text-white">{error}</p>}
 
           <Button type="submit" loading={loading} className="w-full" size="lg">
             Create Account
@@ -72,7 +72,7 @@ export default function Register() {
 
           <p className="text-center text-muted text-sm">
             Already have an account?{' '}
-            <Link to="/login" className="text-blue-400 hover:text-blue-300">Sign in</Link>
+            <Link to="/login" className="text-white underline-offset-4 hover:underline">Sign in</Link>
           </p>
         </form>
       </div>

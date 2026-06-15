@@ -3,10 +3,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        surface: '#0d1117',
-        panel: '#161b22',
-        border: '#21262d',
-        muted: '#8b949e',
+        surface: '#050505',
+        panel: '#111111',
+        border: '#2a2a2a',
+        muted: '#a3a3a3',
       },
     },
   },

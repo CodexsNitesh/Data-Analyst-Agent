@@ -35,16 +35,16 @@ export default function Billing() {
   if (loading) return <div className="flex justify-center py-20"><Spinner size={32} /></div>
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-white">Billing & Plans</h1>
+    <div className="mx-auto max-w-4xl p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-xl font-bold text-white sm:text-2xl">Billing & Plans</h1>
         <p className="text-muted text-sm mt-1">Current plan: <Badge color={user?.plan === 'pro' ? 'blue' : 'gray'}>{user?.plan?.toUpperCase()}</Badge></p>
       </div>
 
       {subscription && (
-        <Card className="p-5 mb-8">
+        <Card className="mb-6 p-4 sm:mb-8 sm:p-5">
           <h2 className="font-semibold text-white mb-3">Current Usage</h2>
-          <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="grid gap-4 text-sm sm:grid-cols-2">
             <div>
               <p className="text-muted mb-1">Plan</p>
               <p className="text-white font-medium capitalize">{subscription.plan}</p>
@@ -61,13 +61,13 @@ export default function Billing() {
         </Card>
       )}
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid gap-4 md:grid-cols-2 md:gap-6">
         {plans.map((plan) => {
           const isCurrentPlan = user?.plan === plan.id
           return (
-            <Card key={plan.id} className={`p-6 ${plan.id === 'pro' ? 'border-blue-500/30' : ''}`}>
+            <Card key={plan.id} className={`p-5 sm:p-6 ${plan.id === 'pro' ? 'border-white/40' : ''}`}>
               {plan.id === 'pro' && (
-                <div className="text-xs text-blue-400 font-semibold uppercase tracking-widest mb-3 flex items-center gap-1">
+                <div className="text-xs text-white font-semibold uppercase tracking-widest mb-3 flex items-center gap-1">
                   <Zap size={12} fill="currentColor" /> Most Popular
                 </div>
               )}
@@ -79,7 +79,7 @@ export default function Billing() {
               <ul className="space-y-2 mb-6">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-center gap-2 text-sm text-white/80">
-                    <Check size={14} className="text-green-400 flex-shrink-0" />
+                    <Check size={14} className="text-white flex-shrink-0" />
                     {f}
                   </li>
                 ))}

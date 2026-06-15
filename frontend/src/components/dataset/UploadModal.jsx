@@ -66,7 +66,7 @@ export default function UploadModal({ open, onClose, onSuccess }) {
     <Modal open={open} onClose={handleClose} title="Upload Dataset">
       {success ? (
         <div className="flex flex-col items-center gap-3 py-4">
-          <CheckCircle2 size={40} className="text-green-400" />
+          <CheckCircle2 size={40} className="text-white" />
           <p className="text-white font-medium">Dataset uploaded successfully!</p>
         </div>
       ) : (
@@ -75,17 +75,17 @@ export default function UploadModal({ open, onClose, onSuccess }) {
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
             onClick={() => fileRef.current?.click()}
-            className="border-2 border-dashed border-border hover:border-blue-500/50 rounded-xl p-8 text-center cursor-pointer transition-colors"
+            className="cursor-pointer rounded-lg border-2 border-dashed border-border p-6 text-center transition-colors hover:border-white/60 sm:p-8"
           >
             <input ref={fileRef} type="file" accept=".csv" className="hidden" onChange={handleFile} />
             {file ? (
               <div className="flex items-center justify-center gap-3">
-                <FileSpreadsheet size={24} className="text-blue-400" />
+                <FileSpreadsheet size={24} className="text-white" />
                 <div className="text-left">
                   <p className="text-white text-sm font-medium">{file.name}</p>
                   <p className="text-muted text-xs">{(file.size / 1024).toFixed(1)} KB</p>
                 </div>
-                <button onClick={(e) => { e.stopPropagation(); setFile(null) }} className="ml-auto text-muted hover:text-red-400">
+                <button onClick={(e) => { e.stopPropagation(); setFile(null) }} className="ml-auto text-muted hover:text-white">
                   <X size={16} />
                 </button>
               </div>
@@ -101,9 +101,9 @@ export default function UploadModal({ open, onClose, onSuccess }) {
           <Input label="Dataset Name" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Q4 Sales Data" />
           <Input label="Description (optional)" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Brief description of this dataset" />
 
-          {error && <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-3 py-2">{error}</p>}
+          {error && <p className="rounded-lg border border-white/30 bg-black px-3 py-2 text-sm text-white">{error}</p>}
 
-          <div className="flex gap-3 pt-2">
+          <div className="flex flex-col gap-3 pt-2 sm:flex-row">
             <Button variant="secondary" className="flex-1" onClick={handleClose}>Cancel</Button>
             <Button className="flex-1" onClick={handleSubmit} loading={loading} disabled={!file}>
               <Upload size={14} /> Upload

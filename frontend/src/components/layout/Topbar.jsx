@@ -8,15 +8,15 @@ export default function Topbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   return (
-    <header className="h-14 bg-panel border-b border-border flex items-center justify-between px-6 flex-shrink-0 relative z-20">
-      <div className="flex items-center gap-3">
-        <div className="w-7 h-7 rounded-lg bg-blue-500 flex items-center justify-center">
-          <Zap size={14} className="text-white" fill="currentColor" />
+    <header className="sticky top-0 z-20 flex h-14 flex-shrink-0 items-center justify-between border-b border-border bg-panel/95 px-3 backdrop-blur sm:px-6">
+      <div className="flex min-w-0 items-center gap-3">
+        <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border border-white bg-white">
+          <Zap size={14} className="text-black" fill="currentColor" />
         </div>
-        <span className="font-bold text-white tracking-tight">AI Sales Copilot</span>
+        <span className="truncate font-bold tracking-tight text-white">AI Sales Copilot</span>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
         <button className="text-muted hover:text-white transition-colors">
           <Bell size={17} />
         </button>
@@ -24,9 +24,9 @@ export default function Topbar() {
         <div className="relative">
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="flex items-center gap-2 hover:bg-border px-3 py-1.5 rounded-lg transition-colors"
+            className="flex items-center gap-2 rounded-lg px-2 py-1.5 transition-colors hover:bg-border sm:px-3"
           >
-            <div className="w-7 h-7 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-xs font-bold text-blue-400">
+            <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/10 text-xs font-bold text-white">
               {user?.full_name?.[0]?.toUpperCase() || 'U'}
             </div>
             <span className="text-sm text-white hidden sm:block">{user?.full_name}</span>
@@ -37,7 +37,7 @@ export default function Topbar() {
           {dropdownOpen && (
             <>
               <div className="fixed inset-0 z-10" onClick={() => setDropdownOpen(false)} />
-              <div className="absolute right-0 top-full mt-2 w-48 bg-panel border border-border rounded-xl shadow-2xl z-20 py-1">
+              <div className="absolute right-0 top-full z-20 mt-2 w-48 rounded-lg border border-border bg-panel py-1 shadow-2xl">
                 <div className="px-3 py-2 border-b border-border">
                   <p className="text-sm text-white font-medium">{user?.full_name}</p>
                   <p className="text-xs text-muted">{user?.email}</p>

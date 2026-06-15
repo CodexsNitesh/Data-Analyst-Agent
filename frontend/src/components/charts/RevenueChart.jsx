@@ -1,5 +1,7 @@
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 
+const REVENUE_ACCENT = '#22d3ee'
+
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null
   return (
@@ -22,16 +24,16 @@ export default function RevenueChart({ data }) {
       <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
         <defs>
           <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-            <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+            <stop offset="5%" stopColor={REVENUE_ACCENT} stopOpacity={0.28} />
+            <stop offset="95%" stopColor={REVENUE_ACCENT} stopOpacity={0} />
           </linearGradient>
         </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-        <XAxis dataKey="label" tick={{ fill: '#8b949e', fontSize: 11 }} axisLine={false} tickLine={false} />
-        <YAxis tick={{ fill: '#8b949e', fontSize: 11 }} axisLine={false} tickLine={false} width={50}
+        <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2a" />
+        <XAxis dataKey="label" tick={{ fill: '#a3a3a3', fontSize: 11 }} axisLine={false} tickLine={false} />
+        <YAxis tick={{ fill: '#a3a3a3', fontSize: 11 }} axisLine={false} tickLine={false} width={50}
           tickFormatter={(v) => `$${v > 999 ? (v / 1000).toFixed(0) + 'k' : v}`} />
         <Tooltip content={<CustomTooltip />} />
-        <Area type="monotone" dataKey="value" stroke="#3b82f6" fill="url(#revGrad)" strokeWidth={2} dot={false} />
+        <Area type="monotone" dataKey="value" stroke={REVENUE_ACCENT} fill="url(#revGrad)" strokeWidth={2} dot={false} />
       </AreaChart>
     </ResponsiveContainer>
   )

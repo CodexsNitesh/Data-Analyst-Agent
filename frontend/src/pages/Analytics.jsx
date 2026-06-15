@@ -52,17 +52,17 @@ export default function Analytics() {
   }, [selectedId])
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
+    <div className="mx-auto max-w-6xl p-4 sm:p-6">
+      <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Analytics</h1>
+          <h1 className="text-xl font-bold text-white sm:text-2xl">Analytics</h1>
           <p className="text-muted text-sm mt-1">Explore KPIs, trends, and AI insights</p>
         </div>
         <div className="flex items-center gap-3">
           <select
             value={selectedId}
             onChange={(e) => setSelectedId(e.target.value)}
-            className="bg-panel border border-border rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+            className="min-w-0 flex-1 rounded-lg border border-border bg-panel px-3 py-2 text-sm text-white focus:border-white focus:outline-none sm:min-w-64"
           >
             <option value="">Select dataset…</option>
             {datasets.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
@@ -84,32 +84,32 @@ export default function Analytics() {
         <>
           {/* KPIs */}
           {summary?.kpis?.length > 0 && (
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
               {summary.kpis.map((kpi) => <KPICard key={kpi.label} {...kpi} />)}
             </div>
           )}
 
-          <div className="grid lg:grid-cols-2 gap-6 mb-6">
-            <Card className="p-5">
+          <div className="mb-6 grid gap-4 lg:grid-cols-2 lg:gap-6">
+            <Card className="p-4 sm:p-5">
               <h2 className="font-semibold text-white mb-4">Revenue Trend</h2>
               <RevenueChart data={summary?.revenue_trend} />
             </Card>
-            <Card className="p-5">
+            <Card className="p-4 sm:p-5">
               <h2 className="font-semibold text-white mb-4">Top Products</h2>
               <TopProductsChart data={summary?.top_products} />
             </Card>
           </div>
 
-          <Card className="p-5 mb-6">
+          <Card className="mb-6 p-4 sm:p-5">
             <h2 className="font-semibold text-white mb-4">Sales Forecast</h2>
             <ForecastChart historical={forecast?.historical} forecast={forecast?.forecast} />
           </Card>
 
-          <div className="grid lg:grid-cols-2 gap-6">
-            <Card className="p-5">
-              <div className="flex items-center justify-between mb-4">
+          <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
+            <Card className="p-4 sm:p-5">
+              <div className="mb-4 flex items-center justify-between gap-3">
                 <h2 className="font-semibold text-white flex items-center gap-2">
-                  <Lightbulb size={16} className="text-yellow-400" /> AI Insights
+                  <Lightbulb size={16} className="text-amber-300" /> AI Insights
                 </h2>
                 <Button variant="secondary" size="sm" onClick={() => loadInsights(selectedId)} loading={insightsLoading}>
                   Refresh
@@ -122,8 +122,8 @@ export default function Analytics() {
               ) : (
                 <ul className="space-y-3">
                   {insights.map((insight, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-white/80">
-                      <span className="text-yellow-400 font-bold mt-0.5">{i + 1}.</span>
+                    <li key={i} className="flex items-start gap-3 rounded-lg border border-amber-300/10 bg-amber-300/[0.04] px-3 py-2 text-sm text-white/85">
+                      <span className="mt-0.5 font-bold text-amber-300">{i + 1}.</span>
                       <span className="leading-relaxed">{insight}</span>
                     </li>
                   ))}
@@ -131,7 +131,7 @@ export default function Analytics() {
               )}
             </Card>
 
-            <Card className="p-5">
+            <Card className="p-4 sm:p-5">
               <h2 className="font-semibold text-white mb-4">Schema</h2>
               <SchemaViewer schema={summary?.schema} />
             </Card>

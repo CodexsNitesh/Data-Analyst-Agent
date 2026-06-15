@@ -1,8 +1,8 @@
 const colors = {
-  blue: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  green: 'bg-green-500/10 text-green-400 border-green-500/20',
-  yellow: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
-  red: 'bg-red-500/10 text-red-400 border-red-500/20',
+  blue: 'bg-white text-black border-white',
+  green: 'bg-white text-black border-white',
+  yellow: 'bg-white/10 text-white border-white/20',
+  red: 'bg-black text-white border-white/30',
   gray: 'bg-white/5 text-muted border-border',
 }
 

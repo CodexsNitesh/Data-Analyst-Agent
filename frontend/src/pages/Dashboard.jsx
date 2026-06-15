@@ -20,34 +20,34 @@ export default function Dashboard() {
   }, [])
 
   const stats = [
-    { label: 'Datasets', value: datasets.length, icon: Database, color: 'text-blue-400', bg: 'bg-blue-500/10 border-blue-500/20' },
-    { label: 'Chat Sessions', value: sessions.length, icon: MessageSquare, color: 'text-purple-400', bg: 'bg-purple-500/10 border-purple-500/20' },
-    { label: 'Total Rows', value: datasets.reduce((s, d) => s + d.row_count, 0).toLocaleString(), icon: TrendingUp, color: 'text-green-400', bg: 'bg-green-500/10 border-green-500/20' },
-    { label: 'Plan', value: user?.plan?.toUpperCase(), icon: BarChart3, color: 'text-yellow-400', bg: 'bg-yellow-500/10 border-yellow-500/20' },
+    { label: 'Datasets', value: datasets.length, icon: Database },
+    { label: 'Chat Sessions', value: sessions.length, icon: MessageSquare },
+    { label: 'Total Rows', value: datasets.reduce((s, d) => s + d.row_count, 0).toLocaleString(), icon: TrendingUp },
+    { label: 'Plan', value: user?.plan?.toUpperCase(), icon: BarChart3 },
   ]
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-white">Welcome back, {user?.full_name?.split(' ')[0]} 👋</h1>
+    <div className="mx-auto max-w-6xl p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-xl font-bold text-white sm:text-2xl">Welcome back, {user?.full_name?.split(' ')[0]}</h1>
         <p className="text-muted text-sm mt-1">Here's what's happening with your sales data today.</p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        {stats.map(({ label, value, icon: Icon, color, bg }) => (
-          <Card key={label} className={`p-5 border ${bg}`}>
-            <div className={`w-9 h-9 rounded-xl border ${bg} flex items-center justify-center mb-3`}>
-              <Icon size={18} className={color} />
+      <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:mb-8 lg:grid-cols-4 lg:gap-4">
+        {stats.map(({ label, value, icon: Icon }) => (
+          <Card key={label} className="border-white/10 p-4 sm:p-5">
+            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 bg-white/5">
+              <Icon size={18} className="text-white" />
             </div>
-            <p className="text-2xl font-bold text-white mb-1">{value}</p>
+            <p className="mb-1 break-words text-2xl font-bold text-white">{value}</p>
             <p className="text-xs text-muted uppercase tracking-widest">{label}</p>
           </Card>
         ))}
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-6">
-        <Card className="p-6">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
+        <Card className="p-4 sm:p-6">
+          <div className="mb-4 flex items-center justify-between gap-3">
             <h2 className="font-semibold text-white">Recent Datasets</h2>
             <Button variant="ghost" size="sm" onClick={() => navigate('/datasets')}>
               View all <ArrowRight size={13} />
@@ -65,8 +65,8 @@ export default function Dashboard() {
             <div className="space-y-2">
               {datasets.slice(0, 5).map((d) => (
                 <div key={d.id} onClick={() => navigate(`/analytics?dataset=${d.id}`)}
-                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-border cursor-pointer transition-colors">
-                  <Database size={16} className="text-blue-400 flex-shrink-0" />
+                  className="flex cursor-pointer items-center gap-3 rounded-lg p-3 transition-colors hover:bg-border">
+                  <Database size={16} className="flex-shrink-0 text-white" />
                   <div className="min-w-0 flex-1">
                     <p className="text-sm text-white truncate">{d.name}</p>
                     <p className="text-xs text-muted">{d.row_count.toLocaleString()} rows · {d.column_count} cols</p>
@@ -78,8 +78,8 @@ export default function Dashboard() {
           )}
         </Card>
 
-        <Card className="p-6">
-          <div className="flex items-center justify-between mb-4">
+        <Card className="p-4 sm:p-6">
+          <div className="mb-4 flex items-center justify-between gap-3">
             <h2 className="font-semibold text-white">Recent Chats</h2>
             <Button variant="ghost" size="sm" onClick={() => navigate('/chat')}>
               View all <ArrowRight size={13} />
@@ -97,8 +97,8 @@ export default function Dashboard() {
             <div className="space-y-2">
               {sessions.slice(0, 5).map((s) => (
                 <div key={s.id} onClick={() => navigate(`/chat?session=${s.id}`)}
-                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-border cursor-pointer transition-colors">
-                  <MessageSquare size={16} className="text-purple-400 flex-shrink-0" />
+                  className="flex cursor-pointer items-center gap-3 rounded-lg p-3 transition-colors hover:bg-border">
+                  <MessageSquare size={16} className="flex-shrink-0 text-white" />
                   <div className="min-w-0 flex-1">
                     <p className="text-sm text-white truncate">{s.title}</p>
                     <p className="text-xs text-muted">{new Date(s.created_at).toLocaleDateString()}</p>

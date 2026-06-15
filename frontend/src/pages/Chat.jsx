@@ -66,15 +66,15 @@ export default function Chat() {
   }
 
   return (
-    <div className="flex h-full overflow-hidden">
+    <div className="flex min-h-[calc(100vh-7rem)] flex-col md:h-[calc(100vh-3.5rem)] md:flex-row md:overflow-hidden">
       {/* Session Sidebar */}
-      <div className="w-64 bg-panel border-r border-border flex flex-col flex-shrink-0">
-        <div className="p-4 border-b border-border">
+      <div className="flex max-h-72 flex-shrink-0 flex-col border-b border-border bg-panel md:max-h-none md:w-64 md:border-b-0 md:border-r">
+        <div className="border-b border-border p-4">
           <p className="text-xs text-muted uppercase tracking-widest font-semibold mb-3">Dataset</p>
           <select
             value={selectedDataset}
             onChange={(e) => setSelectedDataset(e.target.value)}
-            className="w-full bg-surface border border-border rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-white focus:border-white focus:outline-none"
           >
             <option value="">Select dataset…</option>
             {datasets.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
@@ -90,13 +90,13 @@ export default function Chat() {
             <div
               key={s.id}
               onClick={() => loadExistingSession(s.id)}
-              className={`group flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer transition-colors ${activeSession?.id === s.id ? 'bg-blue-500/10 border border-blue-500/20 text-blue-400' : 'hover:bg-border text-muted hover:text-white'}`}
+              className={`group flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2.5 transition-colors ${activeSession?.id === s.id ? 'border border-white/30 bg-white text-black' : 'text-muted hover:bg-border hover:text-white'}`}
             >
               <MessageSquare size={14} className="flex-shrink-0" />
               <span className="text-sm truncate flex-1">{s.title}</span>
               <button
                 onClick={(e) => { e.stopPropagation(); handleDeleteSession(s.id) }}
-                className="opacity-0 group-hover:opacity-100 hover:text-red-400 transition-all"
+                className="opacity-60 transition-all hover:text-white group-hover:opacity-100"
               >
                 <Trash2 size={12} />
               </button>
@@ -106,14 +106,14 @@ export default function Chat() {
       </div>
 
       {/* Chat Area */}
-      <div className="flex-1 overflow-hidden">
+      <div className="min-h-[34rem] flex-1 overflow-hidden md:min-h-0">
         {activeSession ? (
           <div className="h-full flex flex-col">
-            <div className="px-6 py-3 border-b border-border flex items-center gap-2">
-              <MessageSquare size={15} className="text-blue-400" />
-              <span className="text-sm text-white font-medium">{activeSession.title}</span>
+            <div className="flex items-center gap-2 border-b border-border px-4 py-3 sm:px-6">
+              <MessageSquare size={15} className="flex-shrink-0 text-white" />
+              <span className="truncate text-sm font-medium text-white">{activeSession.title}</span>
               <ChevronRight size={14} className="text-muted" />
-              <span className="text-sm text-muted">{datasets.find((d) => d.id === activeSession.dataset_id)?.name}</span>
+              <span className="truncate text-sm text-muted">{datasets.find((d) => d.id === activeSession.dataset_id)?.name}</span>
             </div>
             <div className="flex-1 overflow-hidden">
               <ChatBox messages={messages} loading={loading} onSend={(q) => send(activeSession.id, q)} disabled={false} />

@@ -8,7 +8,7 @@ export default function AppLayout({ children }) {
   const { user, loading } = useAuth()
 
   if (loading) return (
-    <div className="h-screen flex items-center justify-center bg-surface">
+    <div className="min-h-screen flex items-center justify-center bg-surface">
       <Spinner size={32} />
     </div>
   )
@@ -16,11 +16,11 @@ export default function AppLayout({ children }) {
   if (!user) return <Navigate to="/login" replace />
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-surface">
+    <div className="flex min-h-screen flex-col bg-surface text-white">
       <Topbar />
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 flex-col md:flex-row">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto">{children}</main>
+        <main className="min-w-0 flex-1 pb-20 md:pb-0">{children}</main>
       </div>
     </div>
   )

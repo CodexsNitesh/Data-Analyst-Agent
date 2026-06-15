@@ -1,16 +1,16 @@
 import { Loader2 } from 'lucide-react'
 
 const variants = {
-  primary: 'bg-blue-500 hover:bg-blue-400 text-white',
-  secondary: 'bg-panel border border-border hover:border-blue-500/50 text-white',
-  danger: 'bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20',
+  primary: 'bg-white hover:bg-neutral-200 text-black border border-white',
+  secondary: 'bg-panel border border-border hover:border-white/70 text-white',
+  danger: 'bg-panel hover:bg-white/10 text-white border border-white/30',
   ghost: 'hover:bg-border text-muted hover:text-white',
 }
 
 const sizes = {
   sm: 'px-3 py-1.5 text-xs rounded-lg',
-  md: 'px-4 py-2 text-sm rounded-xl',
-  lg: 'px-6 py-3 text-sm rounded-xl',
+  md: 'px-4 py-2 text-sm rounded-lg',
+  lg: 'px-5 py-3 text-sm rounded-lg',
 }
 
 export default function Button({ children, variant = 'primary', size = 'md', loading, className = '', ...props }) {
